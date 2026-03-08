@@ -78,23 +78,22 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Main sections */}
+      {/* Main sections — order matches sidebar nav */}
       <div className="space-y-10">
         <div id="section-events" className="scroll-mt-[72px]">
           <EventDiscovery />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div id="section-careers" className="scroll-mt-[72px]">
-            <CareerOpportunities />
-          </div>
-          <div id="section-chapters" className="scroll-mt-[72px]">
-            <ChapterActivity />
-          </div>
-        </div>
-
         <div id="section-resources" className="scroll-mt-[72px]">
           <ResourcesHub />
+        </div>
+
+        <div id="section-careers" className="scroll-mt-[72px]">
+          <CareerOpportunities />
+        </div>
+
+        <div id="section-chapters" className="scroll-mt-[72px]">
+          <ChapterActivity />
         </div>
 
         <div id="section-partners" className="scroll-mt-[72px]">
