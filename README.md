@@ -1,74 +1,81 @@
-# React + TypeScript + Vite
+# The AI Collective — Member Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page member dashboard for **The AI Collective (AIC)**, a global AI professional network with 31,400+ members across 24 chapters worldwide. Built as a prototype front-end with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The dashboard gives AIC members a unified portal to discover events, explore career opportunities, browse resources, connect with chapters, and view partner spotlights — all from a clean, collapsible sidebar layout.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Events** — Browse and filter upcoming salons, hackathons, demo nights, workshops, and fireside chats. Includes an interactive Leaflet map.
+- **Resources Hub** — Guides, recordings, reports, tools, and datasets curated for AI practitioners.
+- **Career Opportunities** — Job board surfacing 127+ open positions across partner companies (remote, hybrid, onsite).
+- **Chapters** — Directory of 24 global chapters with member counts, organizer info, and recent announcements.
+- **Partners** — Partner company spotlights with hiring status and resource counts.
+- **Profile Completion** — Inline widget tracking profile completeness.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Build Tool | Vite 7 |
+| Styling | Tailwind CSS v4 |
+| Icons | Lucide React |
+| Map | Leaflet + react-leaflet |
+| Font | Inter (Google Fonts) |
+| Linting | ESLint 9 + typescript-eslint |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+All data is currently mocked in `src/data/mockData.ts` — there is no backend or API integration.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Sidebar.tsx        # Collapsible left nav
+│   │   └── TopBar.tsx         # Fixed top bar
+│   ├── sections/
+│   │   ├── EventDiscovery.tsx
+│   │   ├── ResourcesHub.tsx
+│   │   ├── CareerOpportunities.tsx
+│   │   ├── ChapterActivity.tsx
+│   │   ├── PartnerSpotlight.tsx
+│   │   └── ProfileCompletion.tsx
+│   ├── cards/
+│   │   ├── EventCard.tsx
+│   │   ├── JobCard.tsx
+│   │   ├── ChapterCard.tsx
+│   │   ├── ResourceCard.tsx
+│   │   └── PartnerCard.tsx
+│   └── AICLogo.tsx
+├── data/
+│   └── mockData.ts            # All mock data
+├── types/
+│   └── index.ts               # Core domain types
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
-# AIC-Landing-Page
+
+Then open [http://localhost:5173](http://localhost:5173).
+
+### Other Scripts
+
+```bash
+npm run build      # TypeScript compile + Vite production build
+npm run preview    # Preview the production build locally
+npm run lint       # Run ESLint
+```
+
+## Status
+
+This is an early-stage prototype (`v0.0.0`). Navigation is scroll-based (no router). All content is mocked — no backend, auth, or API calls are wired up yet.
