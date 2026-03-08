@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Calendar, TrendingUp, Users, Globe } from 'lucide-react'
 import { events, currentUser } from '../data/mockData'
 import EventCard from './cards/EventCard'
@@ -10,40 +9,19 @@ import ResourcesHub from './sections/ResourcesHub'
 import PartnerSpotlight from './sections/PartnerSpotlight'
 
 const stats = [
-  {
-    label: 'Upcoming Events',
-    value: '5',
-    subtext: 'in your area',
-    icon: Calendar,
-  },
-  {
-    label: 'Open Positions',
-    value: '127',
-    subtext: 'across partners',
-    icon: TrendingUp,
-  },
-  {
-    label: 'Active Chapters',
-    value: '24',
-    subtext: 'worldwide',
-    icon: Globe,
-  },
-  {
-    label: 'Members',
-    value: '31.4k',
-    subtext: 'global network',
-    icon: Users,
-  },
+  { label: 'Upcoming Events', value: '5', subtext: 'in your area', icon: Calendar },
+  { label: 'Open Positions', value: '127', subtext: 'across partners', icon: TrendingUp },
+  { label: 'Active Chapters', value: '24', subtext: 'worldwide', icon: Globe },
+  { label: 'Members', value: '31.4k', subtext: 'global network', icon: Users },
 ]
 
 export default function Dashboard() {
-  const [_activeSection] = useState('home')
   const rsvpedEvents = events.filter((e) => e.isRsvped)
 
   return (
     <div className="p-6 max-w-[1200px] mx-auto">
       {/* Stats row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div id="section-home" className="scroll-mt-[72px] grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
@@ -55,11 +33,7 @@ export default function Dashboard() {
                 <span className="text-[12px] font-medium text-[var(--color-text-tertiary)]">
                   {stat.label}
                 </span>
-                <Icon
-                  size={14}
-                  strokeWidth={1.75}
-                  className="text-[var(--color-text-tertiary)]"
-                />
+                <Icon size={14} strokeWidth={1.75} className="text-[var(--color-text-tertiary)]" />
               </div>
               <p className="text-[22px] font-semibold text-[var(--color-text-primary)] leading-none">
                 {stat.value}
@@ -105,16 +79,27 @@ export default function Dashboard() {
       </div>
 
       {/* Main sections */}
-      <div className="space-y-8">
-        <EventDiscovery />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <CareerOpportunities />
-          <ChapterActivity />
+      <div className="space-y-10">
+        <div id="section-events" className="scroll-mt-[72px]">
+          <EventDiscovery />
         </div>
 
-        <ResourcesHub />
-        <PartnerSpotlight />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div id="section-careers" className="scroll-mt-[72px]">
+            <CareerOpportunities />
+          </div>
+          <div id="section-chapters" className="scroll-mt-[72px]">
+            <ChapterActivity />
+          </div>
+        </div>
+
+        <div id="section-resources" className="scroll-mt-[72px]">
+          <ResourcesHub />
+        </div>
+
+        <div id="section-partners" className="scroll-mt-[72px]">
+          <PartnerSpotlight />
+        </div>
       </div>
     </div>
   )
